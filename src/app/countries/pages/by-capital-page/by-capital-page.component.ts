@@ -12,11 +12,16 @@ export class ByCapitalPageComponent {
   constructor(private countriesService: CountriesService) { }
 
   countries: Country[] = []
+  public isLoading: boolean = false
 
   searchByCapital(value: string) {
+
+    this.isLoading = true
+
     this.countriesService.searchCapital(value)
       .subscribe(countries => {
         this.countries = countries
+        this.isLoading = false
       })
   }
 }
